@@ -49,7 +49,10 @@ $ npm run start:prod
 ## CLI commands
 
 nest g mo feed : generating a module called feed
+
 nest g s feed/servies/feed --flat --no-spec: generating a folder called services inside feed folder with service name of feed and without test file
+
+nest g co feed/controllers/feed --flat --no-spec: generating controllers the same way as services
 
 ## Test
 
