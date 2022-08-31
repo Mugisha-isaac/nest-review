@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { from, identity, Observable } from 'rxjs';
-import { UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { FeedPost } from '../models/post.interface';
 import { FeedService } from '../services/feed.service';
 
@@ -24,5 +24,10 @@ export class FeedController {
     @Body() newPost: FeedPost,
   ): Observable<UpdateResult> {
     return from(this.feedService.updatePost(id, newPost));
+  }
+
+  @Delete(':id')
+  deletePost(@Param('id') id: number): Observable<DeleteResult> {
+    return this.feedService.deletePost(id);
   }
 }
