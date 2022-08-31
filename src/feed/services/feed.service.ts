@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { FeedPostEntity } from '../models/post.entity';
 import { FeedPost } from '../models/post.interface';
 
@@ -19,5 +19,9 @@ export class FeedService {
 
   findAllPosts(): Observable<FeedPost[]> {
     return from(this.feedPostRepository.find());
+  }
+
+  updatePost(id: number, newPost: FeedPost): Observable<UpdateResult> {
+    return from(this.feedPostRepository.update(id, newPost));
   }
 }
